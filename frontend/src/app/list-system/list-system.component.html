@@ -1,0 +1,63 @@
+  <div class="container_button">
+    <a [routerLink]="'/new'"> <button>Novo</button> </a>
+  </div>
+
+  <div class="container-table">
+    <ng-container *ngIf="!isLoadingData">
+      <mat-table class="products-table" [dataSource]="dataSource" matSort>
+
+        <!-- System Column -->
+        <ng-container matColumnDef="system">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Codigo Sistema Column -->
+        <ng-container matColumnDef="codSystem">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> CPF </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.cpf  | cpf}} </mat-cell>
+        </ng-container>
+
+        <!-- Desccription Column -->
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Endereço </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
+        </ng-container>
+
+        <!-- Sigla Column -->
+        <ng-container matColumnDef="sigla">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Bairro </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.neighborhood}} </mat-cell>
+        </ng-container>
+
+        <!-- acoes Column -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Ações</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+            (click)="$event.stopPropagation();">
+            <mat-icon class="secondary-text">more_vert</mat-icon>
+          </button>
+          <mat-menu #moreMenu="matMenu">
+            <button mat-menu-item aria-label="remove" [routerLink]="'/edit/' + element.id">
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button mat-menu-item aria-label="remove" (click)="delete(element.id)">
+              <mat-icon>delete</mat-icon>
+              <span>Remove</span>
+            </button>
+          </mat-menu>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" mat-ripple></mat-row>
+      </mat-table>
+    </ng-container>
+
+    <mat-paginator [pageSize]="13"
+                    [length]="10"
+                    [pageSizeOptions]="[5, 13, 25, 100]" *ngIf="!isLoadingData">
+    </mat-paginator>
+  </div>

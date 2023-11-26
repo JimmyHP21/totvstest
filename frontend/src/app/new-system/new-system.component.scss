@@ -1,0 +1,126 @@
+.container_form {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1rem 1rem 1.5rem 3rem;
+
+  .continer_data {
+
+    .form-title {
+      padding: 1rem 0 1rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgb(39, 39, 182);
+      border-bottom: 2px solid;
+    }
+
+    .form-title-module {
+      padding: 1rem 0 1rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgb(39, 39, 182);
+    }
+
+    .form-system {
+      padding: 2rem 1rem;
+
+      .row {
+        width: 100%;
+
+        mat-form-field {
+          width: 49%;
+          margin: 0 0 0 .5rem;
+        }
+      }
+
+      button {
+        width: 5rem;
+        padding: .5rem;
+        margin: .2rem;
+
+        background-color: rgb(0, 81, 255);
+        color: #fff;
+        font-weight: 600;
+        border: 1px solid transparent;
+        border-radius: .2rem;
+      }
+
+      .phone-row {
+        padding: .5rem;
+        display: flex;
+        align-items: center;
+
+        button {
+          background-color: transparent;
+          display: flex;
+          align-items: center;
+          border-radius: 3rem;
+          border: transparent;
+          mat-icon {
+            color: rgb(0, 81, 255);;
+          }
+        }
+      }
+
+      .full-size {
+        mat-form-field {
+          width: 99%;
+        }
+      }
+    }
+
+    .container-add, .container-save {
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 0 1rem;
+
+      button {
+        width: 5rem;
+        padding: .5rem;
+        margin: .2rem;
+
+        background-color: rgb(0, 81, 255);
+        color: #fff;
+        font-weight: 600;
+        border: 1px solid transparent;
+        border-radius: .2rem;
+      }
+
+      button > a {
+        text-decoration: none;
+        color: white;
+      }
+
+      button:hover {
+        cursor: pointer;
+        background-color: rgba(0, 81, 255, 0.623);
+      }
+    }
+
+    .container-table {
+      mat-cell {
+        button {
+          background-color: transparent;
+          display: flex;
+          align-items: center;
+          border-radius: 3rem;
+          border: transparent;
+          padding: .3rem;
+          width: 33%;
+
+          mat-icon {
+            color: #000;
+          }
+        }
+
+        button > a {
+          text-decoration: none;
+          color: white;
+        }
+
+        button:hover {
+          cursor: pointer;
+        }
+      }
+
+    }
+  }
+}

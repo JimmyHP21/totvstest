@@ -1,0 +1,65 @@
+<div class="container_form">
+    <div class="continer_data">
+      <div class="form-title">
+        Cadastrar Sistema
+      </div>
+      <form class="form-system" [formGroup]="form" (ngSubmit)="save()" autocomplete="off">
+
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="name" placeholder="Placeholder">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input matInput formControlName="cpf" placeholder="Placeholder">
+          </mat-form-field>
+        </div>
+
+        <div class="row full-size">
+          <mat-form-field appearance="outline">
+            <mat-label>Endereço</mat-label>
+            <input matInput formControlName="address" placeholder="Placeholder">
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Bairro</mat-label>
+            <input matInput formControlName="neighborhood" placeholder="Placeholder">
+          </mat-form-field>
+        </div>
+
+        <div class="form-title-module">
+          Lista de telefone
+        </div>
+
+        <ng-container formArrayName="numberList">
+          <ng-container *ngFor="let item of numbers.controls; let i = index">
+            <div class="form-title-module" [formGroupName]="i">
+              Telefone {{i + 1}}
+              <div class="row phone-row">
+                <mat-form-field appearance="outline">
+                  <mat-label>Numero</mat-label>
+                  <input matInput formControlName="number" placeholder="Digite o numero">
+                </mat-form-field>
+                <button *ngIf="i > 0" mat-menu-item aria-label="remove" (click)="removeNumber(i, item)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+
+
+        <button type="button" (click)="newPhone()" class="btn btn-primary"> Novo Numero </button>
+      </form>
+
+      <div class="container-save">
+        <button type="submit" (click)="save()" [disabled]="!form.valid" class="btn btn-primary"> Gravar </button>
+        <button type="submit" (click)="clearForm()" class="btn btn-primary"> Limpar </button>
+        <a [routerLink]="''"><button type="submit" class="btn btn-primary"> Voltar </button></a>
+      </div>
+    </div>
+</div>

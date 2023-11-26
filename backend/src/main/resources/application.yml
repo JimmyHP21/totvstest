@@ -1,0 +1,18 @@
+springdoc:
+  swagger-ui:
+    operations-sorter: method
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    password:
+    username: sa
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
