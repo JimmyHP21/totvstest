@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { SystemService } from './service/system.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ModuleService } from '../service/module.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -41,7 +41,7 @@ export class NewSystemComponent implements OnInit {
     this.idSystem = this.route.snapshot.paramMap.get('id') || null;
 
     if (this.idSystem) {
-      this.systemService.getSystem(this.idSystem).subscribe(dta => {
+      this.systemService.getSystem(this.idSystem).subscribe((dta: any) => {
         this.form.controls['id'].setValue(dta.id);
         this.form.controls['name'].setValue(dta.name);
         this.form.controls['cpf'].setValue(dta.cpf);
@@ -81,7 +81,6 @@ export class NewSystemComponent implements OnInit {
 
   save() {
     console.log(this.form.value);
-
     if (this.numbers.length > 0) {
       if (this.idSystem) {
         this.systemService.updateSystem(this.form.value).subscribe((dta) => {
@@ -89,12 +88,17 @@ export class NewSystemComponent implements OnInit {
             timeOut: 3000,
           })
         } , (erro) => {
-            erro.error.developersError.forEach((e: any) => {
-              this.toastr.error(e.msg, erro.status,  {
+            if (erro.error.developersError) {
+              erro.error.developersError.forEach((e: any) => {
+                this.toastr.error(e.msg, erro.status,  {
+                  timeOut: 3000
+                })
+              })
+            } else {
+              this.toastr.error(erro.error.message, erro.error.status,  {
                 timeOut: 3000
               })
-            })
-
+            }
           });
       } else {
         this.systemService.saveSystem(this.form.value).subscribe((data) => {
@@ -102,11 +106,17 @@ export class NewSystemComponent implements OnInit {
             timeOut: 3000,
           })
         } , (erro) => {
-          erro.error.developersError.forEach((e: any) => {
-            this.toastr.error(e.msg, erro.status,  {
+          if (erro.error.developersError) {
+            erro.error.developersError.forEach((e: any) => {
+              this.toastr.error(e.msg, erro.status,  {
+                timeOut: 3000
+              })
+            })
+          } else {
+            this.toastr.error(erro.error.message, erro.error.status,  {
               timeOut: 3000
             })
-          })
+          }
 
         })
       }
@@ -135,4 +145,5 @@ export class NewSystemComponent implements OnInit {
   get numbers(): FormArray {
     return this.form.controls["numberList"] as FormArray;
   }
+
 }

@@ -15,6 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { provideToastr } from 'ngx-toastr';
+import { NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,12 @@ import { provideToastr } from 'ngx-toastr';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    NgxMaskDirective, NgxMaskPipe
   ],
   providers: [
     provideAnimations(),
     provideToastr(),
+    provideEnvironmentNgxMask()
   ],
   bootstrap: [AppComponent]
 })

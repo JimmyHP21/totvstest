@@ -40,13 +40,13 @@ Clone o projeto
 Entre no diretório do projeto
 
 ```bash
-  cd my-project
+  cd totvstest
 ```
 
 Instale as dependências
 
 ```bash
-  npm install
+  npm install --force
 ```
 
 Inicie o servidor

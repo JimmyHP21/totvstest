@@ -2,12 +2,14 @@ package com.renan.backfistdecision.domain.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import java.io.Serializable;
 
@@ -26,10 +28,21 @@ public class Number implements Serializable {
     private Long id;
 
     @NotBlank(message = "Numero não pode ser vazio")
-    @Pattern(regexp = "^\\([1-9]{2}\\) (?:[2-8]|9[0-9])[0-9]{3}\\-[0-9]{4}$", message = "Numero de telefone invalido")
     @Column(name = "NUMBER", unique = true)
     private String number;
 
     @Column(name = "CLIENT_ID")
     private Long client_id;
+
+    @PrePersist
+    @PreUpdate
+    private void validateNumber() throws Exception{
+        String num = this.getNumber();
+        Pattern pattern = Pattern.compile("(([0-9])\\2{3})", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(num);
+
+        if (matcher.find()) {
+            throw new Exception("Numero de telefone invalido");
+        }
+    }
 }

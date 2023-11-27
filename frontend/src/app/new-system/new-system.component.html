@@ -8,26 +8,26 @@
         <div class="row">
           <mat-form-field appearance="outline">
             <mat-label>Nome</mat-label>
-            <input matInput formControlName="name" placeholder="Placeholder">
+            <input matInput formControlName="name" placeholder="Digite seu nome">
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>CPF</mat-label>
-            <input matInput formControlName="cpf" placeholder="Placeholder">
+            <input matInput formControlName="cpf" placeholder="Digite Seu Cpf" mask="000.000.000-00">
           </mat-form-field>
         </div>
 
         <div class="row full-size">
           <mat-form-field appearance="outline">
             <mat-label>Endereço</mat-label>
-            <input matInput formControlName="address" placeholder="Placeholder">
+            <input matInput formControlName="address" placeholder="Endereço">
           </mat-form-field>
         </div>
 
         <div class="row">
           <mat-form-field appearance="outline">
             <mat-label>Bairro</mat-label>
-            <input matInput formControlName="neighborhood" placeholder="Placeholder">
+            <input matInput formControlName="neighborhood" placeholder="Bairro">
           </mat-form-field>
         </div>
 
@@ -41,8 +41,8 @@
               Telefone {{i + 1}}
               <div class="row phone-row">
                 <mat-form-field appearance="outline">
-                  <mat-label>Numero</mat-label>
-                  <input matInput formControlName="number" placeholder="Digite o numero">
+                  <mat-label>Telefone</mat-label>
+                  <input matInput formControlName="number" placeholder="Digite o telefone" mask="(00) 00000-0000">
                 </mat-form-field>
                 <button *ngIf="i > 0" mat-menu-item aria-label="remove" (click)="removeNumber(i, item)">
                   <mat-icon>delete</mat-icon>
@@ -57,7 +57,7 @@
       </form>
 
       <div class="container-save">
-        <button type="submit" (click)="save()" [disabled]="!form.valid" class="btn btn-primary"> Gravar </button>
+        <button type="submit" (click)="save()" class="btn btn-primary"> Gravar </button>
         <button type="submit" (click)="clearForm()" class="btn btn-primary"> Limpar </button>
         <a [routerLink]="''"><button type="submit" class="btn btn-primary"> Voltar </button></a>
       </div>

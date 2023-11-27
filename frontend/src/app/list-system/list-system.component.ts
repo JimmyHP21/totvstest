@@ -36,13 +36,13 @@ export class ListSystemComponent implements OnInit {
 
 
   list() {
-    this.systemService.listSystem().subscribe(dta => {
-      this.dataSource.data = dta;
+    this.systemService.listSystem().subscribe((data: any) => {
+      this.dataSource.data = data;
     })
   }
 
   delete(id: any) {
-    this.systemService.deleteSystem(id).subscribe( dta =>{
+    this.systemService.deleteSystem(id).subscribe((dta: any) =>{
       this.list();
     })
   }
