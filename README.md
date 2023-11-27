@@ -34,7 +34,7 @@ Criar um Frontend para inserção de dados e um backend com funcionalidades desc
 Clone o projeto
 
 ```bash
-  git clone https://link-para-o-projeto
+  git clone https://github.com/JimmyHP21/totvstest.git
 ```
 
 Entre no diretório do projeto
